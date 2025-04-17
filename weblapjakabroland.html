@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólió</title>
+    <style>
+            body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff; /* fehér háttér */
+    color: #000000; /* fekete szöveg */
+    text-align: center;
+}
+
+header {
+    background-color: #ffffff; /* fehér fejléc */
+    color: #000000; /* fekete szöveg */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 20px;
+    height: 250px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    height: 100%;
+    max-height: 200px;
+    width: auto;
+}
+
+.header-text {
+    padding-left: 30px;
+    font-size: 25px;
+    color: #000000; /* fekete név és portfólió */
+    flex-grow: 1;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-btn {
+    background-color: #2196f3; /* teljesen kék */
+    color: #000000; /* fekete szöveg */
+    font-size: 16px;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-btn:hover {
+    background-color: #1976d2;
+    color: #ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #ffffff;
+    min-width: 220px;
+    z-index: 1000;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 12px 16px;
+    background: #2196f3;
+    color: #000000;
+    text-decoration: none;
+    border-bottom: 1px solid #e0e0e0;
+    transition: background 0.3s;
+}
+
+.dropdown-content a:hover {
+    background: #1976d2;
+    color: #ffffff;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+main {
+    padding: 30px 20px;
+}
+
+.pdf-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 10px;
+    border: 2px solid #cccccc; /* világos szürke körvonal */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-container h2 {
+    color: #000000;
+    margin-bottom: 15px;
+}
+
+iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    background-color: #f0f0f0;
+}
+
+/* Reszponzív beállítások */
+@media (max-width: 768px) {
+    .header-text {
+        font-size: 20px;
+        padding-left: 10px;
+        text-align: center;
+    }
+
+    .menu-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dropdown-btn {
+        font-size: 15px;
+        padding: 10px 15px;
+    }
+
+    iframe {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 10px;
+    }
+
+    .logo {
+        max-height: 120px;
+        margin-bottom: 10px;
+    }
+
+    .header-text {
+        font-size: 18px;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .dropdown-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    iframe {
+        height: 300px;
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="bankilogo.png" alt="Bánki Logo" class="logo">
+        <div class="header-text">
+            <h2>Jakab Roland 13.C</h2>
+            <h1>Portfólió</h1>
+        </div>
+    </header>
+
+    <nav>
+        <div class="menu-container">
+            <div class="dropdown">
+                <button class="dropdown-btn">Adatbázis Kezelés ▼</button>
+                <div class="dropdown-content">
+                    <a href="adatbazis_kezeles.pdf" target="pdf-viewer">12.évfolyam: Első félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Digitális Áramkörök ▼</button>
+                <div class="dropdown-content">
+                    <a href="digitalis_aramkorok.pdf" target="pdf-viewer">11.évfolyam: Második félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Elektronika ▼</button>
+                <div class="dropdown-content">
+                    <a href="elektronika.pdf" target="pdf-viewer">11.évfolyam: Első félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Hálózatkezelés ▼</button>
+                <div class="dropdown-content">
+                    <a href="halozatkezeles.pdf" target="pdf-viewer">12.évfolyam: Első félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">IoT ▼</button>
+                <div class="dropdown-content">
+                    <a href="iot.pdf" target="pdf-viewer">13.évfolyam: Első félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Mikrovezérlő Programozás ▼</button>
+                <div class="dropdown-content">
+                    <a href="mikrovezerlo_programozas.pdf" target="pdf-viewer">11.évfolyam: Első félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Munkavállalói Idegen Nyelv ▼</button>
+                <div class="dropdown-content">
+                    <a href="oneletrajz_magyarul.pdf" target="pdf-viewer">Önéletrajz Magyarul 13/1</a>
+                    <a href="oneletrajz_angolul.pdf" target="pdf-viewer">Önéletrajz Angolul 13/1</a>
+                    <a href="motivacios_level_angolul.pdf" target="pdf-viewer">Motivációs Levél Angolul 13/1</a>
+                    <a href="motivacios_level_magyar.pdf" target="pdf-viewer">Motivációs Levél Magyarul 13/1</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">PLC Programozás ▼</button>
+                <div class="dropdown-content">
+                    <a href="plc_programozas.pdf" target="pdf-viewer">12.évfolyam: Második félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Programfejlesztés ▼</button>
+                <div class="dropdown-content">
+                    <a href="programfejlesztes.pdf" target="pdf-viewer">13.évfolyam: Második félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Programozás Alapjai ▼</button>
+                <div class="dropdown-content">
+                    <a href="programozas_alapjai.pdf" target="pdf-viewer">11.évfolyam: Második félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Robottechnika ▼</button>
+                <div class="dropdown-content">
+                    <a href="robottechnika.pdf" target="pdf-viewer">13.évfolyam: Második félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Számítógépes Szimuláció ▼</button>
+                <div class="dropdown-content">
+                    <a href="szamitogepes_szimulacio.pdf" target="pdf-viewer">12.évfolyam: Második félév</a>
+					<a href="adatbazis_kezeles.pdf" target="pdf-viewer">Konzultációs lap</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="pdf-container">
+            <h2>PDF Megjelenítő</h2>
+            <iframe name="pdf-viewer" src="" style="background-color: #ccc;"></iframe>
+        </section>
+    </main>
+</body>
+</html>
