@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jakab Roland portfólió</title>
+    <style>
+        body {
+            font-family: Trebuchet MS, sans-serif;
+            background-color: white;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 70px; /* Hely a fixált láblécnek */
+        }
+
+        header {
+            background-color: #006400;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        header img {
+            width: 100px;
+            height: auto;
+            background-color: white;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            vertical-align: middle;
+        }
+
+        nav {
+            background-color: #dcdcdc;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        nav b {
+            display: block;
+            margin: 15px auto 5px auto;
+            width: 260px;
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        nav a {
+            display: block;
+            width: 250px;
+            margin: 8px auto;
+            text-decoration: none;
+            color: #006400;
+            font-weight: bold;
+            padding: 12px 15px;
+            border-radius: 8px;
+            background-color: #f0f0f0;
+            text-align: center;
+            transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            background-color: #006400;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        nav a.active {
+            background-color: #006400;
+            color: white;
+        }
+        
+        nav p {
+            margin: 5px 0;
+            height: 1px;
+            line-height: 1px;
+        }
+
+        section { 
+            padding: 30px;
+        }
+
+        footer {
+            background-color: #006400;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            z-index: 1000;
+        }
+        
+        iframe {
+            width: 100%;
+            height: calc(100vh - 220px); 
+            border: none;
+        }
+
+        .iframe-container {
+            position: relative;
+        }
+        .iframe-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px; 
+        }
+        .iframe-header h2 {
+            margin: 0; 
+            font-size: 1.5em;
+        }
+        .fullscreen-btn {
+            padding: 6px 12px;
+            background-color: #005000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .fullscreen-btn:hover {
+            background-color: #007a00; 
+        }
+
+        #embedded_doc_iframe:fullscreen {
+            width: 100vw !important; 
+            height: 100vh !important; 
+            max-width: 100% !important;
+            max-height: 100% !important;
+            padding: 0; margin: 0; border: none;
+        }
+        #embedded_doc_iframe:-webkit-full-screen {
+            width: 100vw !important; height: 100vh !important; max-width: 100% !important; max-height: 100% !important; padding: 0; margin: 0; border: none;
+        }
+        #embedded_doc_iframe:-moz-full-screen {
+            width: 100vw !important; height: 100vh !important; max-width: 100% !important; max-height: 100% !important; padding: 0; margin: 0; border: none;
+        }
+        #embedded_doc_iframe:-ms-fullscreen {
+            width: 100vw !important; height: 100vh !important; max-width: 100% !important; max-height: 100% !important; padding: 0; margin: 0; border: none;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="bankilogo.png" alt="Logo helye"/>
+        <h1>Jakab Roland Portfóliója</h1>
+    </header>
+
+    <nav>
+    
+        <a href="#" class="active" onclick="changePage('fooldal')">Fõoldal</a>
+        <b>11. osztály</b>
+        <a href="#" onclick="changePage('elektrotechnika')">Elektrotechnika</a>
+        <a href="#" onclick="changePage('mikrokontroller')">Mikrovezérlõ programozás</a>
+        <a href="#" onclick="changePage('programozas')">Programozás alapjai</a>
+        <a href="#" onclick="changePage('digitalis')">Digitális áramkörök</a>
+        <p></p>
+        <b>12. osztály</b>
+        <a href="#" onclick="changePage('adatbazis')">Adatbáziskezelés alapjai</a>
+        <a href="#" onclick="changePage('halozat')">Hálózatkezelés</a>
+        <a href="#" onclick="changePage('plcprogramozas')">PLC programozás</a>
+        <a href="#" onclick="changePage('szimulacio')">Számítógépes szimuláció</a>
+        <p></p>
+        <b>13. osztály</b>
+        <a href="#" onclick="changePage('munkavallalo')">Munkavállalói idegen nyelv</a>
+        <a href="#" onclick="changePage('iot')">IoT</a>
+        <a href="#" onclick="changePage('fejlesztes')">Programfejlesztés</a>
+        <a href="#" onclick="changePage('robot')">Robottechnika, CAD/CAM</a>
+    </nav>
+
+    <section id="content">
+        </section>
+
+    <footer>
+        <p>Készítette: Jakab Roland &copy; 2025 </p>
+    </footer>
+
+    <script>
+        function calculateIframeHeight() {
+            const headerElement = document.querySelector('header');
+            const navElement = document.querySelector('nav');
+            const footerElement = document.querySelector('footer');
+
+            const headerHeight = headerElement ? headerElement.offsetHeight : 0;
+            const navHeight = navElement ? navElement.offsetHeight : 0;
+            const footerHeight = footerElement ? footerElement.offsetHeight : 0;
+            
+            const extraPadding = 40; 
+            
+            let calculatedHeight = window.innerHeight - (headerHeight + navHeight + footerHeight + extraPadding);
+            
+            if (calculatedHeight < 150) { 
+                calculatedHeight = 150;
+            }
+            return `${calculatedHeight}px`;
+        }
+
+        function openFullscreen(iframeId) {
+            const iframe = document.getElementById(iframeId);
+            if (iframe) {
+                if (iframe.requestFullscreen) {
+                    iframe.requestFullscreen();
+                } else if (iframe.mozRequestFullScreen) { 
+                    iframe.mozRequestFullScreen();
+                } else if (iframe.webkitRequestFullscreen) { 
+                    iframe.webkitRequestFullscreen();
+                } else if (iframe.msRequestFullscreen) { 
+                    iframe.msRequestFullscreen();
+                }
+            }
+        }
+
+        function changePage(page) {
+            const links = document.querySelectorAll("nav a");
+            links.forEach(link => link.classList.remove("active"));
+            const activeLink = document.querySelector(`nav a[href="#"][onclick="changePage('${page}')"]`);
+            if (activeLink) {
+                activeLink.classList.add("active");
+            }
+
+            const content = document.getElementById("content");
+            const iframeHeight = calculateIframeHeight(); 
+            let pageTitle = ""; 
+
+            switch(page) {
+                case 'fooldal':
+                    content.innerHTML = '<h1>Üdvözlöm a weboldalamon!</h1><br><h2></h2>';
+                    break;
+                case 'halozat': // Hálózatkezelés
+                    pageTitle = "Hálózatkezelés";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EbQGx7zTB11AhwsT5QPceWMBfdADlfaZRzCn_o0f2348Ng?e=EDOMz&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'munkavallalo': // Munkavállalói idegen nyelv
+                    pageTitle = "Munkavállalói idegen nyelv";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe"src="https://dufoffice365-my.sharepoint.com/personal/72603130088_tanulo_bankisuli_hu/_layouts/15/Doc.aspx?sourcedoc={9abe4703-9f16-4d28-917d-4e76163aae3e}&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'mikrokontroller': // Mikrovezérlõ programozás
+                    pageTitle = "Mikrovezérlõ programozás";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EZd2LIxGy6dCkDq8w0rb2NIBtsvn97LIAgkMPzj_lj61kg?e=fSwLEr&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'elektrotechnika': // Elektrotechnika
+                    pageTitle = "Elektrotechnika";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EY_FUJBZxhVNqX4iL5fssDkBSkzaCs_LlMqGTGoWVb9wtQ?e=mLcQHE&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'iot': // IoT
+                    pageTitle = "IoT";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EYs8cy1lgQJAvuB7kqJ6x5QB6gd7QIj6xEelJSIkpmk7ng?e=oamLEJ&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'adatbazis': // Adatbáziskezelés alapjai
+                    pageTitle = "Adatbáziskezelés alapjai";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EYf7uhk5B5RFqHXG-v0Twk4BmRTgnQjAvad2WrajPlhyYg?e=KFbjH5&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'digitalis':
+                    pageTitle = "Digitális áramkörök";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EZMd3HoGS01OkSN3Ll5hqDYBpeCjO3lSL8vhRxrd4v28nA?e=DAIdnr&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'programozas': // Programozás alapjai
+                    pageTitle = "Programozás alapjai";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/ER9FN3F3uE5Auc2JQDRzB3oBj2boDAShMfT5Kb-6jV3bXA?e=nKg9CK&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'fejlesztes': // Programfejlesztés
+                    pageTitle = "Programfejlesztés";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EXXwJr9LC45PlQ1Y8K9DrKwBVuuyBz3nQW2i_JIB0lz6LA?e=gdIaRa&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'plcprogramozas': // PLC programozás
+                    pageTitle = "PLC programozás";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/ESIqrml81yFNl7qaBpKs7XIBPr5St3xD7RlxRBpT-ljO9A?e=LlIGsM&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'szimulacio':
+                    pageTitle = "Számítógépes szimuláció";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/personal/72603130088_tanulo_bankisuli_hu/_layouts/15/Doc.aspx?sourcedoc={8857b6bf-0fb9-4ecd-a030-345157299ea9}&amp;action=embedview" "frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                case 'robot': // Robottechnika
+                    pageTitle = "Robottechnika, CAD/CAM";
+                    content.innerHTML = `
+                        <div class="iframe-container">
+                            <div class="iframe-header">
+                                <h2>${pageTitle}</h2>
+                                <button class="fullscreen-btn" onclick="openFullscreen('embedded_doc_iframe')">Teljes képernyõ</button>
+                            </div>
+                            <iframe id="embedded_doc_iframe" src="https://dufoffice365-my.sharepoint.com/:w:/g/personal/72603130088_tanulo_bankisuli_hu/EYnFbopTLGdNp_4lnvOiz1QBhvaZgu-cht7fk9Eg_StzBQ?e=sQOhhM&amp;action=embedview" style="height: ${iframeHeight}; width: 100%;" frameborder="0" allowfullscreen>
+                                Ez egy beágyazott <a target="_blank" href="https://office.com">Microsoft Office</a>-dokumentum...
+                            </iframe>
+                        </div>`;
+                    break;
+                default:
+                    content.innerHTML = '<h1>Tartalom nem található</h1><p>A kért oldal nem létezik.</p>';
+            }
+
+            const newIframe = content.querySelector('iframe');
+            if (newIframe) {
+                newIframe.style.height = calculateIframeHeight();
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeLink = document.querySelector("nav a.active");
+            let initialPage = 'fooldal';
+            if (activeLink && activeLink.getAttribute('onclick')) {
+                const match = activeLink.getAttribute('onclick').match(/changePage\('([^']+)'\)/);
+                if (match && match[1]) {
+                    initialPage = match[1];
+                }
+            }
+            changePage(initialPage);
+        });
+
+        window.addEventListener('resize', () => {
+            const activeContentIframe = document.getElementById('embedded_doc_iframe'); 
+            if (document.fullscreenElement !== activeContentIframe && activeContentIframe) { 
+                activeContentIframe.style.height = calculateIframeHeight();
+            }
+        });
+    </script>
+</body>
+</html>
